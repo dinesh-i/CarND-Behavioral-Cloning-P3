@@ -5,7 +5,7 @@ import time
 
 file_contains_header = True
 
-dev_mode = True
+dev_mode = False
 no_of_images_to_read_in_dev_mode = 1000
 
 # Read the data collected in csv file
