@@ -3,26 +3,32 @@ import cv2
 import numpy as np
 import time
 
-file_contains_header = True
-
+file_contains_header = False
 dev_mode = False
-no_of_images_to_read_in_dev_mode = 1000
+no_of_images_to_read_in_dev_mode = 4
 
 # Read the data collected in csv file
 
 samples = []
 
-with open('../CarND-Behavioral-Cloning-P3-data/data/driving_log.csv') as csvFile:
-	reader = csv.reader(csvFile)
-	first_line = True
-	for sample in reader:
-		if(first_line and file_contains_header):
-			first_line = False
-			continue
-		samples.append(sample)
-		if(dev_mode and len(samples) >= no_of_images_to_read_in_dev_mode):
-			break
-	
+def read_samples(filename):
+	with open(filename) as csvFile:
+		reader = csv.reader(csvFile)
+		first_line = True
+		for sample in reader:
+			if(first_line and file_contains_header):
+				first_line = False
+				continue
+			samples.append(sample)
+			if(dev_mode and len(samples) >= no_of_images_to_read_in_dev_mode):
+				break
+
+
+read_samples('../CarND-Behavioral-Cloning-P3-My-Data/track1_forward_2_laps/driving_log.csv')
+read_samples('../CarND-Behavioral-Cloning-P3-My-Data/track1_reverse_2_laps/driving_log.csv')
+read_samples('../CarND-Behavioral-Cloning-P3-My-Data/track1_shoulder_to_road_1_lap/driving_log.csv')
+read_samples('../CarND-Behavioral-Cloning-P3-My-Data/track2_forward_2_laps/driving_log.csv')
+				
 # Update the image path from absolute path to relative path as we plan to train the model in AWS and the absolute path will be different there
 
 
@@ -38,7 +44,8 @@ image_shape = (160,320,3)
 
 def generator(samples, batch_size=32):
 	num_samples = len(samples)
-	relative_path = '../CarND-Behavioral-Cloning-P3-data/data/IMG'
+	#relative_path = '../CarND-Behavioral-Cloning-P3-data/data/IMG'
+	relative_path = '..\CarND-Behavioral-Cloning-P3-My-Data'
 	while 1:
 		shuffle(samples)
 		for offset in range(0, num_samples, batch_size):
@@ -49,9 +56,18 @@ def generator(samples, batch_size=32):
 			
 			for batch_sample in batch_samples:
 				for i in range(3):
-					image_file_name = batch_sample[i].split('/')[-1]
-					relative_file_name = relative_path + '/' + image_file_name
+					image_file_name = batch_sample[i].split(':')[-1]
+	
+					relative_file_name = relative_path + image_file_name
 					input_image = cv2.imread(relative_file_name)
+					
+					#print(batch_sample[i].split(':'))
+					#print('image_file_name ', image_file_name)
+					#print('relative_file_name ', relative_file_name)
+					#print('input_image file name ', relative_file_name)
+					#print('input_image ', input_image)
+					#print('input_image.shape ', input_image.shape)
+					
 					images.append(input_image)
 					
 					measurement = float(batch_sample[3])
