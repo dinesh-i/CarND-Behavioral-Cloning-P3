@@ -45,7 +45,7 @@ image_shape = (160,320,3)
 def generator(samples, batch_size=32):
 	num_samples = len(samples)
 	#relative_path = '../CarND-Behavioral-Cloning-P3-data/data/IMG'
-	relative_path = '..\CarND-Behavioral-Cloning-P3-My-Data'
+	relative_path = '../CarND-Behavioral-Cloning-P3-My-Data'
 	while 1:
 		shuffle(samples)
 		for offset in range(0, num_samples, batch_size):
@@ -59,6 +59,7 @@ def generator(samples, batch_size=32):
 					image_file_name = batch_sample[i].split(':')[-1]
 	
 					relative_file_name = relative_path + image_file_name
+					relative_file_name = relative_file_name.replace('\\','//')
 					input_image = cv2.imread(relative_file_name)
 					
 					#print(batch_sample[i].split(':'))
@@ -129,7 +130,7 @@ model.add(Dense(1))
 model.compile(loss='mse', optimizer = 'adam')
 
 #model.fit(X_train, y_train, shuffle=True, validation_split=0.2, nb_epoch=5)
-model.fit_generator(train_generator, samples_per_epoch= len(train_samples), validation_data=validation_generator, nb_val_samples=len(validation_samples), nb_epoch=5)
+model.fit_generator(train_generator, samples_per_epoch= len(train_samples), validation_data=validation_generator, nb_val_samples=len(validation_samples), nb_epoch=3)
 			
 model.save('model.h5')
 
