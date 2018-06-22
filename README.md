@@ -29,11 +29,11 @@ The goals / steps of this project are the following:
 #### 1. Submission includes all required files and can be used to run the simulator in autonomous mode
 
 My project includes the following files:
-* behavioural-cloner.ipynb containing the script to create and train the model
-* drive.py for driving the car in autonomous mode
-* model_tune_101.h5 containing a trained convolution neural network
+* behavioural-cloner.ipynb  -  containing the script to create and train the model
+* drive.py   -  for driving the car in autonomous mode
+* model_tune_101.h5   -  containing a trained convolution neural network
 * model_tune_101.mp4 - the output video
-* README.md summarizing the results
+* README.md   -  summarizing the results
 
 #### 2. Submission includes functional code
 Using the Udacity provided simulator and my drive.py file, the car can be driven autonomously around the track by executing 
@@ -55,7 +55,7 @@ The model includes RELU layers to introduce nonlinearity.
 
 #### 2. Attempts to reduce overfitting in the model
 
-Although the model has 4 epochs cofigured, the output of every epoch is stored and based on the loss details in training and validation, the best fit result is chosen.  I got this idea from https://github.com/jeremy-shannon/CarND-Behavioral-Cloning-Project and it proved to be very useful where I had the option to test the simlator with the output of different epochs and observe the result.
+Although the model has 4 epochs configured, the output of every epoch is stored and based on the loss details in training and validation, the best fit result is chosen.  I got this idea from https://github.com/jeremy-shannon/CarND-Behavioral-Cloning-Project and it proved to be very useful where I had the option to test the simlator with the output of different epochs and observe the result.
 
 The model was trained and validated on different data sets to ensure that the model was not overfitting.
 
@@ -67,13 +67,13 @@ The model used an adam optimizer, so the learning rate was not tuned manually (d
 
 I've tried the following training data:
 
-Track1_forward_2_laps
-Track1_reverse_2_laps
-Track1_shoulder_to_road_1_lap
-Track2_forward_2_laps
-Track1_smooth_curves
-Track1_smooth_curves_2
-Track1_smooth_curves_3
+* Track1_forward_2_laps
+* Track1_reverse_2_laps
+* Track1_shoulder_to_road_1_lap
+* Track2_forward_2_laps
+* Track1_smooth_curves
+* Track1_smooth_curves_2
+* Track1_smooth_curves_3
 
 When testing the simulator the car was crossing the road track during sharp turns and other turns. To avoid that, I've included 3 iterations of smooth curve data. Some of them include the areas where the car went out of the track. 
 
