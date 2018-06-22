@@ -12,13 +12,7 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./examples/placeholder.png "Model Visualization"
-[image2]: ./examples/placeholder.png "Grayscaling"
-[image3]: ./examples/placeholder_small.png "Recovery Image"
-[image4]: ./examples/placeholder_small.png "Recovery Image"
-[image5]: ./examples/placeholder_small.png "Recovery Image"
-[image6]: ./examples/placeholder_small.png "Normal Image"
-[image7]: ./examples/placeholder_small.png "Flipped Image"
+[image1]: ./nvidia-cnn-architecture-624x890.png "NVIDIA CNN Architecture"
 
 ## Rubric Points
 ### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
@@ -84,6 +78,8 @@ Track 2 has lot of curves and slopes and was more challenging that Track 1. I've
 ### Model Architecture and Training Strategy
 
 #### 1. Solution Design Approach
+
+![alt text][image1]
 
 I implemented the NVIDIA architecture. Images were preprocessed using a Lamda layer to normalize and cropped the top and bottom portions of the image to remove unwanted content.
 
