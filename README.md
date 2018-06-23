@@ -27,10 +27,10 @@ My project includes the following files:
 
 File Name | Description |
 :--:|:--:|
-behavioural-cloner.ipynb | containing the script to create and train the model|
+behavioural-cloner.ipynb | contains the code to create and train the model|
 model.py | The above notebook code is copied here for reference. But I have used the Jupyter notebook for my development|
 drive.py | for driving the car in autonomous mode |
-model.h5 | containing a trained convolution neural network |
+model.h5 | contains a trained convolution neural network |
 video.mp4 | the output video |
 README.md | summarizing the results |
 
