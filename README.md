@@ -13,6 +13,7 @@ The goals / steps of this project are the following:
 [//]: # (Image References)
 
 [image1]: ./images/nvidia-cnn-architecture-624x890.png "NVIDIA CNN Architecture"
+[video1]: ./video.mp4	
 
 ## Rubric Points
 ### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
@@ -113,3 +114,5 @@ Defined the training data points in the above section "4. Appropriate training d
 Training and test data are split using "train_test_split" form sklearn toolkit. Test set contains 20% of the data.
 
 All these images were shuffled to ensure that the time series of images doesn't introduce any bias to the network.
+
+This is a link to the project video processed by the model -> [video1]
