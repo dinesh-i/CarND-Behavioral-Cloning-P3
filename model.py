@@ -226,6 +226,6 @@ checkpoint = ModelCheckpoint('model_tune_1{epoch:02d}.h5')
 model.fit_generator(train_generator, samples_per_epoch= len(train_samples), validation_data=validation_generator, nb_val_samples=len(validation_samples), nb_epoch=4, callbacks=[checkpoint])
 
 
-model.save('model_u_sc.h5')
+model.save('model.h5')
 
 print('Time Taken to load the images and train the model : ', time.time() - start_time)
