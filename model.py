@@ -190,7 +190,8 @@ print("calling the train generator")
 #print((next(train_generator)))
 
 from keras.models import Sequential
-from keras.layers import Flatten, Dense, Lambda, Convolution2D, MaxPooling2D, Cropping2D
+from keras.layers import Flatten, Dense, Lambda, Convolution2D, MaxPooling2D, Cropping2D, Dropout
+from keras.regularizers import l2, activity_l2
 
 model = Sequential()
 model.add(Lambda(lambda x: x/255.0 - 0.5, input_shape=(image_shape)))
@@ -207,25 +208,31 @@ model.add(Cropping2D(cropping=((70,25), (0,0))))
 #model.add(Dense(1))
 
 # NVIDIA Architecture
-model.add(Convolution2D(24,5,5, subsample=(2,2), activation = "relu"))
-model.add(Convolution2D(36,5,5, subsample=(2,2), activation = "relu"))
-model.add(Convolution2D(48,5,5, subsample=(2,2), activation = "relu"))
-model.add(Convolution2D(64,3,3, activation = "relu"))
-model.add(Convolution2D(64,3,3, activation = "relu"))
+model.add(Convolution2D(24,5,5, subsample=(2,2), border_mode='valid', W_regularizer=l2(0.0005), activation = "relu"))
+#model.add(Dropout(0.5))
+model.add(Convolution2D(36,5,5, subsample=(2,2), border_mode='valid', W_regularizer=l2(0.0005), activation = "relu"))
+model.add(Convolution2D(48,5,5, subsample=(2,2), border_mode='valid', W_regularizer=l2(0.0005), activation = "relu"))
+model.add(Convolution2D(64,3,3, border_mode='valid', W_regularizer=l2(0.0005), activation = "relu"))
+model.add(Convolution2D(64,3,3, border_mode='valid', W_regularizer=l2(0.0005), activation = "relu"))
+
 model.add(Flatten())
+#model.add(Dropout(0.5))
 model.add(Dense(100))
+#model.add(Dropout(0.5))
 model.add(Dense(50))
+#model.add(Dropout(0.5))
 model.add(Dense(10))
 model.add(Dense(1))
 
 model.compile(loss='mse', optimizer = 'adam')
 
-checkpoint = ModelCheckpoint('model_tune_1{epoch:02d}.h5')
+checkpoint = ModelCheckpoint('model_tune_do_relu_l2_{epoch:02d}.h5')
 
 #model.fit(X_train, y_train, shuffle=True, validation_split=0.2, nb_epoch=5)
-model.fit_generator(train_generator, samples_per_epoch= len(train_samples), validation_data=validation_generator, nb_val_samples=len(validation_samples), nb_epoch=4, callbacks=[checkpoint])
+model.fit_generator(train_generator, samples_per_epoch= len(train_samples), validation_data=validation_generator, nb_val_samples=len(validation_samples), nb_epoch=7, callbacks=[checkpoint])
 
 
 model.save('model.h5')
 
 print('Time Taken to load the images and train the model : ', time.time() - start_time)
+
