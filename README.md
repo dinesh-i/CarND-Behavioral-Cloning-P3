@@ -56,7 +56,7 @@ The model includes RELU layers to introduce nonlinearity.
 
 Although the model has 4 epochs configured, the output of every epoch is stored and based on the loss details in training and validation, the best fit result is chosen.  I got this idea from https://github.com/jeremy-shannon/CarND-Behavioral-Cloning-Project and it proved to be very useful where I had the option to test the simlator with the output of different epochs and observe the result.
 
-The model was trained and validated on different data sets to ensure that the model was not overfitting.
+The model was trained and validated on different data sets and regularizers are used to ensure that the model was not overfitting.
 
 #### 3. Model parameter tuning
 
@@ -86,7 +86,7 @@ Track 2 has lot of curves and slopes and was more challenging that Track 1. I've
 
 ![alt text][image1]
 
-I implemented the NVIDIA architecture. Images were preprocessed using a Lamda layer to normalize and cropped the top and bottom portions of the image to remove unwanted content.
+I implemented the model based on the NVIDIA architecture and introduced regularizers to avoid overfitting. Images were preprocessed using a Lamda layer to normalize and cropped the top and bottom portions of the image to remove unwanted content.
 
 NVIDIA architecture has 5 Convolution layers where each of the layer is followed by a RELU activation layer. This is followed by a Flatten layer and 4 Dense layers. The 4th layer is to take a single output and was introduced for the purposes of this project.
 
