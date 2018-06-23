@@ -12,7 +12,7 @@ The goals / steps of this project are the following:
 
 [//]: # (Image References)
 
-[image1]: ./nvidia-cnn-architecture-624x890.png "NVIDIA CNN Architecture"
+[image1]: ./images/nvidia-cnn-architecture-624x890.png "NVIDIA CNN Architecture"
 
 ## Rubric Points
 ### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/432/view) individually and describe how I addressed each point in my implementation.  
@@ -23,16 +23,16 @@ The goals / steps of this project are the following:
 #### 1. Submission includes all required files and can be used to run the simulator in autonomous mode
 
 My project includes the following files:
-* behavioural-cloner.ipynb  -  containing the script to create and train the model
+* behavioural-cloner.ipynb  -  containing the script to create and train the model. Note: The same code is copied to model.py too but I have used the Jupyter notebook for my development.
 * drive.py   -  for driving the car in autonomous mode
-* model_tune_101.h5   -  containing a trained convolution neural network
-* model_tune_101.mp4 - the output video
+* model.h5   -  containing a trained convolution neural network
+* video.mp4 - the output video
 * README.md   -  summarizing the results
 
 #### 2. Submission includes functional code
 Using the Udacity provided simulator and my drive.py file, the car can be driven autonomously around the track by executing 
 ```sh
-python drive.py model_tune_101.h5
+python drive.py model.h5
 ```
 
 #### 3. Submission code is usable and readable
